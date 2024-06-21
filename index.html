@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dynamic Table</title>
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <input
+      type="text"
+      id="rowInput"
+      placeholder="Enter row data (comma separated)"
+    />
+    <button id="addRow">Add Row</button>
+    <table id="dataTable">
+      <thead>
+        <tr>
+          <th>Column 1</th>
+          <th>Column 2</th>
+          <th>Column 3</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <script>
+      document.getElementById("addRow").addEventListener("click", function () {
+        const rowInput = document.getElementById("rowInput").value;
+        const rowData = rowInput.split(",");
+        const tbody = document
+          .getElementById("dataTable")
+          .querySelector("tbody");
+        const tr = document.createElement("tr");
+
+        rowData.forEach((data) => {
+          const td = document.createElement("td");
+          td.textContent = data.trim();
+          tr.appendChild(td);
+        });
+
+        tbody.appendChild(tr);
+        document.getElementById("rowInput").value = "";
+      });
+    </script>
+  </body>
+</html>
